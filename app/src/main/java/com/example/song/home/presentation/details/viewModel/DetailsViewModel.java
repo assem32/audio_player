@@ -50,6 +50,7 @@ public class DetailsViewModel extends ViewModel {
 
     }
 
+
     public void checkPlay(){
         if(MediaPlayerIns.isPlay()) {
             MediaPlayerIns.pauseOrPlay();
@@ -62,12 +63,11 @@ public class DetailsViewModel extends ViewModel {
     }
 
     public String formatTime(int durationMills) {
-        Log.d("mill", "" + durationMills);
+//        Log.d("mill", "" + durationMills);
         int minutes = (durationMills / 1000) / 60;
         int seconds = (durationMills / 1000) % 60;
 
-        Log.d("mill", "" + minutes);
-        Log.d("mill", "" + seconds);
+
         return String.format("%02d:%02d", minutes, seconds);
     }
 

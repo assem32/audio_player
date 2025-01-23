@@ -2,13 +2,17 @@ package com.example.song.home.data.localSource;
 
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.util.Log;
 
 import com.example.song.home.domain.model.SongModel;
 
 import java.io.IOException;
+import java.io.PrintStream;
 
 public class MediaPlayerIns {
     static MediaPlayer instance;
+
+    static String songUrl;
 
     public static MediaPlayer getInstance() {
         if (instance == null) {
@@ -21,14 +25,27 @@ public class MediaPlayerIns {
 
     public void playSing(SongModel songModel){
         MediaPlayer mediaPlayer = getInstance();
-        try {
-            mediaPlayer.reset();
-            mediaPlayer.setDataSource(songModel.getPath());
-            mediaPlayer.prepare();
-            mediaPlayer.start();
+        if(songUrl!=null && songUrl.equals(songModel.getPath()) &&mediaPlayer.isPlaying()){
+            Log.d("done",songModel.getPath());
+            Log.d("done",songModel.getPath());
+
         }
-        catch (IOException e) {
-            throw new RuntimeException(e);
+        else {
+            try {
+//                songUrl=songModel.getPath()
+                mediaPlayer.reset();
+                mediaPlayer.setDataSource(songModel.getPath());
+                mediaPlayer.prepare();
+                mediaPlayer.start();
+                songUrl=songModel.getPath();
+
+                Log.d("oooooo",songModel.getPath());
+                Log.d("oooooo",songUrl);
+//                System.out.println(songModel+"fgggdfdffd");
+            }
+            catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
 
     }
