@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav"
+    app:startDestination="@id/homeScreen">
+    <fragment
+        android:id="@+id/homeScreen"
+        android:name="com.example.song.home.presentation.Home.HomeScreen"
+        android:label="HomeScreen" >
+        <action
+            android:id="@+id/action_homeScreen_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.song.home.presentation.details.DetailFragment"
+        android:label="DetailFragment" >
+        <argument
+            android:name="songName"
+            app:argType="string" />
+        <argument
+            android:name="duration"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_detailFragment_to_homeScreen"
+            app:destination="@id/homeScreen" />
+        <argument
+            android:name="artist"
+            app:argType="string" />
+    </fragment>
+</navigation>
