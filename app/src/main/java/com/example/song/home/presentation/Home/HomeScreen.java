@@ -20,6 +20,7 @@ import com.example.song.home.data.localSource.LocalDataSource;
 import com.example.song.home.data.localSource.MediaPlayerIns;
 import com.example.song.home.domain.model.SongModel;
 import com.example.song.home.presentation.Home.Adapter.HomeSongRecycler;
+import com.example.song.home.service.Notification;
 
 import java.util.List;
 
@@ -69,6 +70,8 @@ public class HomeScreen extends Fragment {
 
                         Navigation.findNavController(view).navigate(HomeScreenDirections.actionHomeScreenToDetailFragment(song.getTitle(),song.getDuration(),song.getArtist()));
                         mediaPlayerIns.playSing(song);
+                        Notification notification = new Notification();
+                        notification.notificationBuild(view.getContext());
 
 
 
