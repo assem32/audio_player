@@ -14,17 +14,18 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.song.home.service.Notification;
+
 
 public class MainActivity extends AppCompatActivity {
+
+    Notification notification=new Notification();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
-
+        notification.createNotificationChannel(this);
 
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
