@@ -71,7 +71,7 @@ public class HomeScreen extends Fragment {
                         Navigation.findNavController(view).navigate(HomeScreenDirections.actionHomeScreenToDetailFragment(song.getTitle(),song.getDuration(),song.getArtist()));
                         mediaPlayerIns.playSing(song);
                         Notification notification = new Notification();
-                        notification.notificationBuild(view.getContext());
+                        notification.notificationBuild(view.getContext(),song.getTitle(),"audio app");
 
 
 
