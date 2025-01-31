@@ -10,8 +10,11 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 
-
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.song.databinding.FragmentHomeBinding;
@@ -20,20 +23,23 @@ import com.example.song.home.data.localSource.LocalDataSource;
 import com.example.song.home.data.localSource.MediaPlayerIns;
 import com.example.song.home.domain.model.SongModel;
 import com.example.song.home.presentation.Home.Adapter.HomeSongRecycler;
+import com.example.song.home.presentation.Home.mvvm.HomeMvvm;
 import com.example.song.home.service.Notification;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class HomeScreen extends Fragment {
 
     private FragmentHomeBinding binding;
 
-    private LocalDataSource localDataSource;
-
-    private  List<SongModel> songs;
-
     HomeSongRecycler homeSongRecycler = new HomeSongRecycler();
 
+    HomeMvvm homeMvvm;
 
 
     MediaPlayerIns mediaPlayerIns = new MediaPlayerIns();
@@ -47,27 +53,52 @@ public class HomeScreen extends Fragment {
         return binding.getRoot();
     }
 
-    // onViewCreated is called after the view has been created, just before interacting with it.
-
-
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        localDataSource = new LocalDataSource(view.getContext());
-        songs = localDataSource.getSongs();
 
 
-        homeSongRecycler.setList(songs);
+        homeMvvm = new ViewModelProvider(this).get(HomeMvvm.class);
 
-        binding.songRecycler.setAdapter(homeSongRecycler);
+        homeMvvm.getSongListLiveData();
+        homeMvvm.songListLiveData.observe(
+                getViewLifecycleOwner(), new Observer<List<SongModel>>() {
+                    @Override
+                    public void onChanged(List<SongModel> songModels) {
+                        homeSongRecycler.setList(songModels);
+                        binding.songRecycler.setAdapter(homeSongRecycler);
+                    }
+                }
+        );
+
+        homeMvvm.getModeLiveData().observe(
+                getViewLifecycleOwner(), new Observer<Boolean>() {
+                    @Override
+                    public void onChanged(Boolean aBoolean) {
+
+
+                        if(aBoolean == false){
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
+//
+                        }
+                        else{
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                        }
+                    }
+                }
+        );
+
+        binding.pressss.setOnClickListener(
+                v -> homeMvvm.setModeLiveData()
+        );
+
+
 
         homeSongRecycler.setOnItemClick(
                 new HomeSongRecycler.OnItemClick() {
                     @Override
                     public void onClick(SongModel song) {
-                        Toast.makeText(view.getContext(),song.getPath(),Toast.LENGTH_LONG).show();
-
-
                         Navigation.findNavController(view).navigate(HomeScreenDirections.actionHomeScreenToDetailFragment(song.getTitle(),song.getDuration(),song.getArtist()));
                         mediaPlayerIns.playSing(song);
                         Notification notification = new Notification();

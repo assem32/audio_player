@@ -20,7 +20,6 @@ import com.example.song.home.presentation.details.viewModel.DetailsViewModel;
 public class DetailFragment extends Fragment {
 
     private FragmentDetailsBinding fragmentDetailsBinding;
-    MediaPlayerIns mediaPlayerIns = new MediaPlayerIns();
 
     DetailsViewModel detailsViewModel;
 

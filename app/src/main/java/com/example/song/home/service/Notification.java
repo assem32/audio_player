@@ -51,7 +51,6 @@ public class Notification {
                 .addAction(R.drawable.step_backward_icon,"", playPendingIntent)
                 .addAction(R.drawable.play_icon,"play pause", playPendingIntent)
                 .addAction(R.drawable.step_backward_icon,"", playPendingIntent)
-                .setOngoing(true)
                 .setStyle(new androidx.media.app.NotificationCompat.MediaStyle().setShowActionsInCompactView(0,1,2)
                         .setMediaSession(mediaSessionCompat.getSessionToken()))
                 .setShowWhen(false)

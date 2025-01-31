@@ -17,11 +17,17 @@ import com.example.song.home.domain.model.SongModel;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class LocalDataSource {
 
     private Context context;
 
-    public LocalDataSource(Context context) {
+    @Inject
+    public LocalDataSource(
+            Context context
+    ) {
+
         this.context = context;
     }
 

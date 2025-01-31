@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
     <ImageView
         android:id="@+id/img_song"
         android:layout_width="50dp"
@@ -19,6 +20,7 @@
         app:layout_constraintStart_toEndOf="@+id/img_song"
         app:layout_constraintTop_toTopOf="@+id/img_song"
         app:layout_constraintBottom_toTopOf="@id/song_artist"
+        style="@style/TEXT_MAIN"
         />
     <TextView
         android:id="@+id/song_artist"
@@ -28,6 +30,7 @@
         app:layout_constraintStart_toEndOf="@+id/img_song"
         app:layout_constraintTop_toBottomOf="@+id/song_name"
         app:layout_constraintBottom_toBottomOf="@id/img_song"
+        style="@style/TEXT_SECOND"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
