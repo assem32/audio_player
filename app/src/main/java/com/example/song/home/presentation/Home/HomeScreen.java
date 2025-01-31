@@ -1,7 +1,6 @@
 package com.example.song.home.presentation.Home;
 
 
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -45,7 +44,6 @@ public class HomeScreen extends Fragment {
     MediaPlayerIns mediaPlayerIns = new MediaPlayerIns();
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the fragment's layout and return the View.
@@ -75,14 +73,9 @@ public class HomeScreen extends Fragment {
                 getViewLifecycleOwner(), new Observer<Boolean>() {
                     @Override
                     public void onChanged(Boolean aBoolean) {
-
-
-                        if(aBoolean == false){
+                        if (aBoolean == false) {
                             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
-//
-                        }
-                        else{
+                        } else {
                             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                         }
                     }
@@ -94,24 +87,20 @@ public class HomeScreen extends Fragment {
         );
 
 
-
         homeSongRecycler.setOnItemClick(
                 new HomeSongRecycler.OnItemClick() {
                     @Override
                     public void onClick(SongModel song) {
-                        Navigation.findNavController(view).navigate(HomeScreenDirections.actionHomeScreenToDetailFragment(song.getTitle(),song.getDuration(),song.getArtist()));
+                        Navigation.findNavController(view).navigate(HomeScreenDirections.actionHomeScreenToDetailFragment(song.getTitle(), song.getDuration(), song.getArtist()));
                         mediaPlayerIns.playSing(song);
                         Notification notification = new Notification();
-                        notification.notificationBuild(view.getContext(),song.getTitle(),"audio app");
-
+                        notification.notificationBuild(view.getContext(), song.getTitle(), "audio app");
 
 
                     }
                 }
         );
     }
-
-
 
 
 }

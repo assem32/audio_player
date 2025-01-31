@@ -44,7 +44,6 @@ public class HomeMvvm extends ViewModel {
 
     public MutableLiveData<Boolean>getModeLiveData(){
         modeLiveData.setValue(songRepo.getMode());
-        Log.d("mmmoooddd",modeLiveData.toString());
         return modeLiveData;
     }
 

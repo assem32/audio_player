@@ -48,13 +48,14 @@ public class Notification {
                 .setContentTitle(appName)
                 .setSmallIcon(R.drawable.audio_essential_volume_svgrepo_com)
                 .setLargeIcon(icon)
-                .addAction(R.drawable.step_backward_icon,"", playPendingIntent)
-                .addAction(R.drawable.play_icon,"play pause", playPendingIntent)
-                .addAction(R.drawable.step_backward_icon,"", playPendingIntent)
+                .addAction(R.drawable.forward_end_fill_svgrepo_com,"", playPendingIntent)
+                .addAction(MediaPlayerIns.isPlay()?R.drawable.play_332:R.drawable.pause_f_svgrepo_com,"play pause", playPendingIntent)
+                .addAction(R.drawable.backward_end_fill_svgrepo_com,"", playPendingIntent)
                 .setStyle(new androidx.media.app.NotificationCompat.MediaStyle().setShowActionsInCompactView(0,1,2)
                         .setMediaSession(mediaSessionCompat.getSessionToken()))
                 .setShowWhen(false)
-                .setPriority(NotificationCompat.PRIORITY_MAX);
+                .setOngoing(false)
+                .setPriority(NotificationCompat.PRIORITY_LOW);
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
         notificationManager.notify(1,builder.build());
