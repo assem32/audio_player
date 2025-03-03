@@ -11,6 +11,7 @@ public class Broadcast extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if (intent.getAction().equals("ACTION_PLAY")) {
             MediaPlayerIns.pauseOrPlay();
+
         }
     }
 }

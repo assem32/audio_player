@@ -10,8 +10,11 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
+import com.example.song.R;
 import com.example.song.databinding.FragmentHomeBinding;
 import com.example.song.databinding.FragmentSplashBinding;
 import com.example.song.home.presentation.Home.mvvm.HomeMvvm;
@@ -59,10 +62,16 @@ public class SplashScreen extends Fragment {
                 new Runnable() {
                     @Override
                     public void run() {
-                        if ( getView() != null) {
-                            Navigation.findNavController(requireView())
-                                    .navigate(SplashScreenDirections.actionSplashScreenToHomeScreen());
-                        }                    }
+                        if (getView() != null) {
+                            NavController controller = Navigation.findNavController(requireView());
+
+                            NavOptions navOptions = new NavOptions.Builder()
+                                    .setPopUpTo(R.id.splashScreen, true) // Clears SplashScreen from stack
+                                    .build();
+                            controller.navigate(R.id.homeScreen, null, navOptions);
+
+                        }
+                    }
                 },
                 1000
         );
