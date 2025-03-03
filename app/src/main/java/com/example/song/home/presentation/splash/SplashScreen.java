@@ -59,7 +59,7 @@ public class SplashScreen extends Fragment {
                 new Runnable() {
                     @Override
                     public void run() {
-                        if (getView() != null) {
+                        if ( getView() != null) {
                             Navigation.findNavController(requireView())
                                     .navigate(SplashScreenDirections.actionSplashScreenToHomeScreen());
                         }                    }
