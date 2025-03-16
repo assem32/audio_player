@@ -11,9 +11,10 @@ Hospital System is an Android native app using Kotlin built as part of Instant I
 - Create a medical report for the case (Nurse)
 ## Technical Details
 This application was built by:
--Kotlin as a programming language
--Retrofit: to connect the app with API
--Navigation component: for easy navigation between screens
--Hilt and Dagger: for dependency injection
--ViewModel, LiveData, and binding
+- Kotlin as a programming language
+- Retrofit: to connect the app with API
+- Navigation component: for easy navigation between screens
+- Hilt and Dagger: for dependency injection
+- ViewModel, LiveData, and binding
+
   
